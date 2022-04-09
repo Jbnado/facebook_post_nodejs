@@ -2,9 +2,14 @@
 
 ## Install
 
+-   In src/config/config.ts you need to put the page_id of your page and access_token from graph api.
+
 -   nodejs 16.14.2 +
--   npm i
--   npm start
+
+    ```bash
+    npm i
+    npm start
+    ```
 
 -   server will run in localhost:3000/post.
     You need to pass an text that will be the message of post and an image url.
