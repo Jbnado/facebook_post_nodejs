@@ -62,4 +62,30 @@ export class PostController {
 		req.write(data)
 		req.end()
 	}
+
+	static async getMetrics(request: Request, response: Response) {
+		const pagePostId = request.params.id
+
+		const req = https.get(
+			`https://graph.facebook.com/${pagePostId}/insights?metric=post_reactions_like_total,post_reactions_love_total,post_reactions_wow_total&access_token=${accessToken}`,
+			(res) => {
+				res.on('data', (chunk) => {
+					logger.info(String(chunk))
+					return response.status(res.statusCode).send(chunk)
+				}).on('error', (error) => {
+					logger.error(error)
+					return response.status(res.statusCode).send(error.message)
+				}).on('end', () => {
+					return response.status(res.statusCode).send(`Request finished`)
+				})
+			}
+		)
+
+		req.on('error', (error) => {
+			logger.error(error)
+			return response.send(error.message)
+		})
+
+		req.end()
+	}
 }
