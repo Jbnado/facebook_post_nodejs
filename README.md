@@ -24,3 +24,7 @@
     ```
 
 -   You will get the id of photo as id and the id of the post as id_post.
+
+After get this id_post you are able to get metrics using this url:
+localhost:3000/post/:id
+Passing as a parameter an id_post
