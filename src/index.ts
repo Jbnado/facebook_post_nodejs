@@ -12,11 +12,9 @@ class Server {
 
 	private async middlewares() {
 		this.express.use(express.json())
-		this.express.use(express.urlencoded({extended: true}))
+		this.express.use(express.urlencoded({ extended: true }))
 		this.express.use(routes)
-		this.express.listen(3000 || process.env.PORT, () =>
-			console.log('http://localhost:3000')
-		)
+		this.express.listen(3000 || process.env.PORT)
 	}
 }
 
